@@ -112,11 +112,36 @@ int main(void)
                     }
                     printf("\n");
             }
-            system("pause");
-            system("CLS");
             } 
         }
-    } 
-	return 0;
+        
+        int n;
+        if(choice=='b'||choice=='B')
+        {
+        	printf("請輸入1~9的整數:");
+        	scanf("%d",&n);
+        	
+        	if(n<1||n>9)
+        	{
+        		printf("警告:請輸入1~9之間的整數!\n");
+        		continue;
+			}
+			else
+			{
+				printf("以下是%d*%d的乘法表:\n",n,n);
+				for (i=1;i<=n;i++) 
+				{
+                for (j=1;j<=n;j++) 
+				{
+                    printf("%d*%d=%2d ",i,j,i*j);	
+			    }
+			    printf("\n");
+		        }
+           }
+		    system("pause");
+            system("CLS");
+        }
+    }
+    return 0;
 }
 
