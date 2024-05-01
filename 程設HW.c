@@ -43,6 +43,7 @@ int main(void)
 
     while (error < 3) 
 	{
+		printf("密碼值：2024\n");
         printf("請輸入密碼:");
         scanf("%d", &password);
 
@@ -59,12 +60,10 @@ int main(void)
             if (error == 3) 
 			{
                 printf("錯誤已達三次，程式即將關閉!\n");
-                break;
+                return 0;
             }
         }
     }
-    printf("密碼值：%d\n", password);
-
     system("pause");
     system("CLS");
 
@@ -138,10 +137,25 @@ int main(void)
 			    printf("\n");
 		        }
            }
-		    system("pause");
-            system("CLS");
         }
+        char ans;
+        if(choice=='c'||choice=='C')
+        {
+        	printf("Continue(y/n)?\n");
+        	fflush(stdin);
+        	scanf("%c",&ans);
+        	if(ans=='y'||ans=='Y')
+        	{
+        		system("CLS");
+        		continue;
+			}
+			else if(ans=='n'||ans=='N')
+			{
+				return 0;
+			}
+		}
+		system("pause");
+        system("CLS");
     }
-    return 0;
 }
 
