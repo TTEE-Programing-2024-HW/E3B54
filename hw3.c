@@ -314,10 +314,11 @@ do
 				{
                     seats[selected_positions[i][0]][selected_positions[i][1]] = '@';
                 }
+                int x=9;
                 printf("//987654321\n");
                 for (i = 0; i < ROWS; ++i) 
 				{
-					int x=9;
+					fflush(stdin);
                     printf("%d ", x--);
                     for (j = 0; j < COLS; ++j) 
 					{
@@ -334,6 +335,29 @@ do
                 }
             }
     }
+    if (choice == 'd') 
+	{
+        char cont;
+    do 
+	{
+        printf("Continue? (y/n): ");
+        scanf(" %c", &cont);
+        if (cont == 'n' || cont == 'N') 
+		{
+            choice = 'q'; // °h¥Xµ{¦¡
+            break;
+        } 
+		else if (cont != 'y' && cont != 'Y') 
+		{
+            printf("Invalid choice. Please enter 'y' or 'n'.\n");
+        }
+    } while (cont != 'y' && cont != 'Y'); 
+      }else 
+     {
+        printf("Invalid choice, please try again.\n");
+     }
+     
+	
 }while(choice!='q');
 
 return 0;
