@@ -43,7 +43,7 @@ int main(void)
     
     int password, error = 0;
 
-    while (error < 3) 
+    while (error<3) 
 	{
 		printf("密碼值：2024\n");
         printf("請輸入密碼:");
@@ -56,10 +56,11 @@ int main(void)
         } 
 		else 
 		{
+			fflush(stdin);
             error++;
             printf("密碼錯誤!請重新輸入!\n");
 
-            if (error == 3) 
+            if (error==3) 
 			{
                 printf("錯誤已達三次，程式即將關閉!\n");
                 return 0;
@@ -70,12 +71,15 @@ int main(void)
     system("CLS");
 
 char seats[ROWS][COLS];
+
 int prebooked[10][2]=
 {
     {0, 1}, {1, 4}, {2, 7}, {3, 8}, {4, 2}, 
     {5, 5}, {6, 6}, {7, 3}, {8, 0}, {8, 7}
 };
-int i,j;
+
+int count=0,i,j;
+
 for (i=0;i<ROWS;++i) 
 {
         for (j=0;j<COLS;++j) 
@@ -83,14 +87,27 @@ for (i=0;i<ROWS;++i)
             seats[i][j] = '-';
         }
 }
-for (i=0;i<10;++i) 
+
+srand(time(NULL));
+while (count<10) 
 {
-    seats[prebooked[i][0]][prebooked[i][1]] = '*';
+        int row = rand() % ROWS;
+        int col = rand() % COLS;
+        if (seats[row][col] == '-') 
+		{
+            seats[row][col] = '*';
+            prebooked[count][0] = row;
+            prebooked[count][1] = col;
+            count++;
+        }
 }
+
 char choice;
    
-while(choice!='q');
+do
 {
+	system("CLS");
+	
     printf("----------[BookingSystem]----------\n");
     printf("|  a. Available seats             |\n");
     printf("|  b. Arrange for you             |\n");
@@ -101,7 +118,26 @@ while(choice!='q');
     printf("Enter your choice: ");
     scanf("%c",&choice);
     
-}
+    if (choice == 'a') 
+	{
+		int x=9;
+        printf("\\123456789\n");
+        for (i=0;i<ROWS;++i) 
+		{
+			fflush(stdin);
+            printf("%d ",x--);
+            for (j=0;j<COLS;++j) 
+			{
+                printf("%c", seats[i][j]);
+            }
+                printf("\n");
+        }
+        printf("Press any key to return to the main menu.");
+        getchar();
+        getchar();
+    }
+    
+}while(choice!='q');
 
 return 0;
 }
