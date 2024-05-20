@@ -279,8 +279,61 @@ do
 			{
                 printf("No suitable arrangement found.\n");
             }
-	}while (!found);
-}
+	   }while (!found);
+    }
+    
+    if (choice == 'c') 
+	{
+        char input[20];
+        printf("Enter your seat choices (e.g., 1-2,2-9): ");
+        scanf("%s", input);
+
+        int selected_positions[4][2];
+        int num_seats = 0;
+        char *token = strtok(input, ",");
+        int valid = 1;
+
+        while (token != NULL && num_seats < 4) 
+		{
+            int row, col;
+            if (sscanf(token, "%d-%d", &row, &col) != 2 || row < 1 || row > ROWS || col < 1 || col > COLS || seats[row - 1][col - 1] != '-') 
+			{
+                printf("Seat already booked or invalid seat choice.\n");
+                valid = 0;
+                break;
+            }
+                selected_positions[num_seats][0] = row - 1;
+                selected_positions[num_seats][1] = col - 1;
+                num_seats++;
+                token = strtok(NULL, ",");
+        }
+
+            if (valid && num_seats > 0) 
+			{
+                for (i = 0; i < num_seats; ++i) 
+				{
+                    seats[selected_positions[i][0]][selected_positions[i][1]] = '@';
+                }
+                printf("//987654321\n");
+                for (i = 0; i < ROWS; ++i) 
+				{
+					int x=9;
+                    printf("%d ", x--);
+                    for (j = 0; j < COLS; ++j) 
+					{
+                        printf("%c", seats[i][j]);
+                    }
+                    printf("\n");
+                }
+                printf("Press any key if the selection is correct.");
+                getchar();
+                getchar();
+                for (i = 0; i < num_seats; ++i) 
+				{
+                    seats[selected_positions[i][0]][selected_positions[i][1]] = '*';
+                }
+            }
+    }
 }while(choice!='q');
 
 return 0;
