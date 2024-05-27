@@ -39,35 +39,16 @@ int main()
     while (1) 
 	{
         system("CLS");
-        Menu();
+        
         char choice;
         scanf(" %c", &choice);
 
-        switch (choice) {
-            case 'a':
-                Enter();
-                break;
-            case 'b':
-                Display();
-                break;
-            case 'c':
-                Search();
-                break;
-            case 'd':
-                Ranking();
-                break;
-            case 'e':
-                Exit();
-                return 0;
-            default:
-                printf("無效指令，請重新輸入!\n");
-        }
+        
     }
 }
 
 void Welcome() 
 {
-    system("CLS");
     printf("	              .:--.                   :--.        .  .\n");
     printf("             :-.  :-:              .-++++*=    . .. .. .  \n");
     printf("             -.*+-. .::.--==++++=--*+++****-   . ....  .  \n");
@@ -99,4 +80,33 @@ void Welcome()
     printf("       .::-+-.. --:-::..                :=++*+:::::        \n");
     printf("        ::::-:--:.   .:-----------::::::+++=: ::::         \n");
     printf("         .:::                                 ..           \n");
+    
+    system("pause");
+    system("CLS");
+}
+
+int Password() 
+{
+    int attempts = 0;
+    int input;
+    
+    while (attempts < 3) 
+	{
+        printf("輸入4字密碼: ");
+        scanf("%d", &input);
+        if (input == password) 
+		{
+            printf("Welcome!\n");
+            return 1;
+        } 
+		else 
+		{
+		    attempts++;
+		    if(attempts < 3)
+		    {
+                printf("錯誤!請再試一次!\n");
+		    }
+        }
+    }
+    return 0;
 }
