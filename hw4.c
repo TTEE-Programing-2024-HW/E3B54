@@ -24,7 +24,7 @@ void Enter();
 void Display();
 void Search();
 void Ranking();
-void exit();
+void Exit();
 
 int main() 
 {
@@ -58,6 +58,8 @@ int main()
             case 'd':
                 Ranking();
                 break;
+            case 'e':
+                Exit();
             default:
                 printf("Invalid choice. Please try again.\n");
         }
@@ -278,7 +280,7 @@ void Ranking()
         }
     }
 
-    printf("姓名        學號      平均分\n");
+    printf("姓名        學號    平均分\n");
     printf("---------------------------\n");
     for (i = 0; i < numStudents; ++i) 
 	{
@@ -288,4 +290,28 @@ void Ranking()
     printf("Press any key to return to the menu...");
     getchar(); 
     getchar(); 
+}
+
+void Exit() 
+{
+    char confirm;
+    
+    while (1) 
+	{
+        printf("確認離開? (y/n): ");
+        scanf(" %c", &confirm);
+        if (confirm == 'y' || confirm == 'Y') 
+		{
+            printf("Exiting...\n");
+            exit(0);
+        } 
+		else if (confirm == 'n' || confirm == 'N') 
+		{
+            return;
+        } 
+		else 
+		{
+            printf("無效輸入. 請輸入 'y' 或 'n'.\n");
+        }
+    }
 }
