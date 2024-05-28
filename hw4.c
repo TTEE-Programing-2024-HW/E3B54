@@ -55,6 +55,9 @@ int main()
             case 'c':
                 Search();
                 break;
+            case 'd':
+                Ranking();
+                break;
             default:
                 printf("Invalid choice. Please try again.\n");
         }
@@ -247,7 +250,40 @@ void Search() {
 
     if (!found) 
 	{
-        printf("沒有找到此學生 %s。\n", name);
+        printf("沒有找到學生 %s。\n", name);
+    }
+    printf("Press any key to return to the menu...");
+    getchar(); 
+    getchar(); 
+}
+
+void Ranking() 
+{
+    system("CLS");
+    int i,j;
+    
+    for (i = 0; i < numStudents - 1; ++i) 
+	{
+        for (j = 0; j < numStudents - i - 1; ++j) 
+		{
+            double avg1 = (students[j].math + students[j].physics + students[j].english) / 3.0;
+            double avg2 = (students[j + 1].math + students[j + 1].physics + students[j + 1].english) / 3.0;
+            
+            if (avg1 < avg2) 
+			{
+                Student temp = students[j];
+                students[j] = students[j + 1];
+                students[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("姓名        學號      平均分\n");
+    printf("---------------------------\n");
+    for (i = 0; i < numStudents; ++i) 
+	{
+        double average = (students[i].math + students[i].physics + students[i].english) / 3.0;
+        printf("%-12s%-8d%-8.1f\n", students[i].name, students[i].id, average);
     }
     printf("Press any key to return to the menu...");
     getchar(); 
