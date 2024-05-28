@@ -49,6 +49,9 @@ int main()
             case 'a':
                 Enter();
                 break;
+            case 'b':
+                Display();
+                break;
             default:
                 printf("Invalid choice. Please try again.\n");
         }
@@ -196,5 +199,24 @@ void Enter()
     printf("已全部輸入完畢!");
     getchar();
     getchar();
+}
+
+void Display() 
+{
+    system("CLS");
+    
+    printf("姓名        學號    數學    物理    英文    平均分\n");
+    printf("----------------------------------------------------\n");
+
+    int i;
+    for (i = 0; i < numStudents; ++i) 
+	{
+        double average = (students[i].math + students[i].physics + students[i].english) / 3.0;
+        printf("%-12s%-8d%-8d%-8d%-8d%-8.1f\n", students[i].name, students[i].id, students[i].math, students[i].physics, students[i].english, average);
+    }
+
+    printf("Press any key to return to the menu...");
+    getchar(); 
+    getchar(); 
 }
 
