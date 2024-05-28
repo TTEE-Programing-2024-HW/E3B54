@@ -344,7 +344,7 @@ do
         scanf(" %c", &cont);
         if (cont == 'n' || cont == 'N') 
 		{
-            choice = 'q'; // °h¥Xµ{¦¡
+            choice = 'q'; 
             break;
         } 
 		else if (cont != 'y' && cont != 'Y') 
@@ -352,10 +352,11 @@ do
             printf("Invalid choice. Please enter 'y' or 'n'.\n");
         }
     } while (cont != 'y' && cont != 'Y'); 
-      }else 
-     {
+    }
+	else 
+    {
         printf("Invalid choice, please try again.\n");
-     }
+    }
      
 	
 }while(choice!='q');

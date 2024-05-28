@@ -52,6 +52,9 @@ int main()
             case 'b':
                 Display();
                 break;
+            case 'c':
+                Search();
+                break;
             default:
                 printf("Invalid choice. Please try again.\n");
         }
@@ -220,3 +223,33 @@ void Display()
     getchar(); 
 }
 
+void Search() {
+    system("CLS");
+    
+    char name[50];
+    printf("輸入要查找的學生姓名: ");
+    scanf("%s", name);
+
+    int found = 0;
+    int i;
+    
+    for (i = 0; i < numStudents; ++i) 
+	{
+        if (strcmp(students[i].name, name) == 0) 
+		{
+            double average = (students[i].math + students[i].physics + students[i].english) / 3.0;
+            printf("姓名        學號    數學    物理    英文    平均分\n");
+            printf("%-12s%-8d%-8d%-8d%-8d%-8.1f\n", students[i].name, students[i].id, students[i].math, students[i].physics, students[i].english, average);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) 
+	{
+        printf("沒有找到此學生 %s。\n", name);
+    }
+    printf("Press any key to return to the menu...");
+    getchar(); 
+    getchar(); 
+}
